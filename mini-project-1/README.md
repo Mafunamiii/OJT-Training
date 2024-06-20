@@ -30,6 +30,6 @@ When prompted to enter expressions, the program accepts binary operations in the
 - Supported operands include: **+**, **-**, **\***, **/**
 
 ### Syntax:
-n operand n
-r operand n
-n operand r
+- n operand n
+- r operand n
+- n operand r
