@@ -2,6 +2,14 @@ package org.example;
 
 import java.util.Scanner;
 
+/*
+    isOperand (Boolean) : checks if the character is part of the operands in the scope of the calculator
+    parseInput (String[]) : checks if the user inputs are valid. If the inputs are valid, the appropriate variables
+                            will be assigned to the return string array, this return string array will be used in the Calculator
+    calculatorApp (void) : consists of the main processes of the calculator
+
+ */
+
 public class Main {
 
     public static void main(String[] args) {
