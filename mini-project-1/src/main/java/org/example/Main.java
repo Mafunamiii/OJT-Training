@@ -29,7 +29,7 @@ public class Main {
 
         for (char inputChar : input.toCharArray()) {
             if (!isOperand(inputChar) && operand.equals("n")) {
-                if (inputChar == 'r') {
+                if (Character.toLowerCase(inputChar) == 'r') {
                     firstNum += result;
                 } else {
                     firstNum += inputChar;
@@ -37,7 +37,7 @@ public class Main {
             } else if (isOperand(inputChar)) {
                 operand = String.valueOf(inputChar);
             } else if (!isOperand(inputChar) && !operand.equals("n")) {
-                if (inputChar == 'r') {
+                if (Character.toLowerCase(inputChar) == 'r') {
                     secondNum += result;
                 } else {
                     secondNum += inputChar;
