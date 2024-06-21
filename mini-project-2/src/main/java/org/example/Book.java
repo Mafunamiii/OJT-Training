@@ -100,7 +100,7 @@ public class Book {
         this.language = language;
     }
 
-    class hardBack extends Book {
+    static class hardBack extends Book {
         private String coverType;
         private int pageCount;
         private double weightKG;
@@ -118,6 +118,11 @@ public class Book {
             super(title, isbn);
             this.pageCount = pagecount;
             this.weightKG = weight;
+        }
+
+        public hardBack(String title, String isbn, int pagecount) {
+            super(title, isbn);
+            this.pageCount = pagecount;
         }
 
         public String getCoverType() {
@@ -158,6 +163,17 @@ public class Book {
             this.fileSizeMB = fileSizeMB;
         }
 
+        public eBook(String title, String isbn, String fileFormat, double fileSizeMB) {
+            super(title, isbn);
+            this.fileFormat = fileFormat;
+            this.fileSizeMB = fileSizeMB;
+        }
+
+        public eBook(String title, String isbn, String fileFormat) {
+            super(title, isbn);
+            this.fileFormat = fileFormat;
+        }
+
         public String getFileFormat() {
             return fileFormat;
         }
@@ -188,6 +204,17 @@ public class Book {
             super(title, author, isbn, genre, publisher, publicationDate, synopsis, language, fileFormat , fileSizeMB);
             this.audioFormat = audioFormat;
             this.bitrate = bitrate;
+        }
+
+        public audioBook(String title, String isbn, String fileFormat, String audioFormat, String bitrate) {
+            super(title, isbn, fileFormat);
+            this.audioFormat=audioFormat;
+            this.bitrate = bitrate;
+        }
+
+        public audioBook(String title, String isbn, String fileFormat, String audioFormat) {
+            super(title, isbn, fileFormat);
+            this.audioFormat=audioFormat;
         }
 
         public String getBitrate() {
