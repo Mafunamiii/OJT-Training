@@ -7,27 +7,12 @@ public class Main {
     static ArrayList<Book> bookList = new ArrayList<Book>();
     static Scanner inScanner = new Scanner(System.in);
     static ManageBook manageBooks;
-
-
+    static loadBooks loadBooks;
 
     public static void main(String[] args) {
         manageBooks = new ManageBook(bookList);
-        manageBooks.addBook("Book 1", "ISBN001");
-        manageBooks.addBook("Book 2", "ISBN002");
-        manageBooks.addBook("Book 3", "ISBN003");
-        manageBooks.addBook("Book 4", "ISBN004");
-        manageBooks.addBook("Book 5", "ISBN005");
-        manageBooks.addBook("Book 6", "ISBN006");
-        manageBooks.addBook("Book 7", "ISBN007");
-
-        manageBooks.addHardBack(new Book("HardBack 1", "ISBNH001"), 200);
-        manageBooks.addHardBack(new Book("HardBack 2", "ISBNH002"), 250);
-        manageBooks.addHardBack(new Book("HardBack 3", "ISBNH003"), 180);
-        manageBooks.addHardBack(new Book("HardBack 4", "ISBNH004"), 300);
-        manageBooks.addHardBack(new Book("HardBack 5", "ISBNH005"), 220);
-        manageBooks.addHardBack(new Book("HardBack 6", "ISBNH006"), 270);
-        manageBooks.addHardBack(new Book("HardBack 7", "ISBNH007"), 190);
-
+        loadBooks =  new loadBooks(bookList,manageBooks);
+        bookList = loadBooks.loadToList();
         libraryManagement();
     }
 
@@ -36,10 +21,10 @@ public class Main {
 
         switch (choice){
             case 1:
-                manageBooks.retrieveBooks();
+                manageBooks.retrieveBooks(bookList);
                 break;
            case 2:
-
+                manageBooks.searchBook(bookList);
                 break;
             case 3:
 
@@ -68,7 +53,7 @@ public class Main {
 
             String inputStr = inScanner.nextLine();
             int temp = inputCheck(inputStr, 5);
-            if (temp != 0) {
+            if (temp != 0 && temp < 5) {
                 menuChoice = temp;
                 break;
             }
