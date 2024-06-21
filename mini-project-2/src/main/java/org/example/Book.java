@@ -151,7 +151,7 @@ public class Book {
 
     }
 
-    class eBook extends Book {
+    static class eBook extends Book {
         private String fileFormat;
         private double fileSizeMB;
 
@@ -159,12 +159,6 @@ public class Book {
                         LocalDate publicationDate, String synopsis, String language,
                          String fileFormat, double fileSizeMB) {
             super(title, author, isbn, genre, publisher, publicationDate, synopsis, language);
-            this.fileFormat = fileFormat;
-            this.fileSizeMB = fileSizeMB;
-        }
-
-        public eBook(String title, String isbn, String fileFormat, double fileSizeMB) {
-            super(title, isbn);
             this.fileFormat = fileFormat;
             this.fileSizeMB = fileSizeMB;
         }
@@ -192,7 +186,7 @@ public class Book {
 
     }
 
-    class audioBook extends eBook {
+    static class audioBook extends eBook {
         private String audioFormat;
         private String bitrate;
 
