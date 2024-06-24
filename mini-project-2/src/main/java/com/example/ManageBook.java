@@ -1,7 +1,9 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ManageBook {
     static ArrayList<Book> bookList = new ArrayList<Book>();
@@ -103,33 +105,43 @@ public class ManageBook {
     }
 
     // ==========================================
-
+    // remove book by id
     static void removeBook(String isbn) {
 
     }
 
     // ==========================================
-
+    // book search feature
     public void searchBook(ArrayList<Book> bookList) {
-        ArrayList<Book> results = new ArrayList<>();
 
-        searchbook:
+        final int searchTypeChoice;
+        final String searchTerm;
+
         while (true) {
             System.out.print(
-                    "\n============== Search by? ==============\n" +
-                            "            [1] Title\n"+
-                            "            [2] Author\n"+
-                            "            [3] ISBN\n"+
-                            "            [4] Genre\n"+
-                            "            [5] Publisher\n"+
-                            "            [6] Language\n►");
+                    """
+                    ============== Search by? ==============
+                                [1] Title
+                                [2] Author
+                                [3] ISBN
+                                [4] Genre
+                                [5] Publisher
+                                [6] Language
+                                [7] Back to Main menu
+                    ►""");
             String input = Main.inScanner.nextLine();
-            int choice = Main.inputCheck(input, 6);
+            searchTypeChoice = Main.inputCheck(input, 6);
 
-            int searchTermChoice = 0;
+            System.out.print("\nSearch: ");
+            searchTerm = Main.inScanner.nextLine();
 
+            if (searchTypeChoice == 7) {
+                return;
+            }
+            /*
             switch (choice) {
                 case 1:
+
                     System.out.print("\nEnter Title: ");
                     String title = Main.inScanner.nextLine();
                     for (Book book: bookList) {
@@ -137,6 +149,7 @@ public class ManageBook {
                             results.add(book);
                         }
                     }
+                    searchTypeChoice = 1;
                     break searchbook;
                 case 2:
                     System.out.print("\nEnter Author: ");
@@ -178,25 +191,36 @@ public class ManageBook {
                 default:
                     System.out.println("Invalid input, Select from the choices above");
             }
+        }*/
+            List<Book> results = bookList.stream()
+                    .filter(book -> matchSearch(book, searchTypeChoice, searchTerm))
+                    .collect(Collectors.toList());
+            retrieveBooks((ArrayList<Book>) results);
+            break;
         }
-        retrieveBooks(results);
-    }
 
-    static ArrayList<Book> searchBookTitle(String title) {
-        ArrayList<Book> resultsTitle = new ArrayList<>();
-        for (Book book: bookList) {
-            if (book.getTitle().equalsIgnoreCase(title)) {
-                resultsTitle.add(book);
-            }
+    }
+    static boolean matchSearch(Book book, int searchType, String searchTerm) {
+        switch (searchType){
+            case 1:
+                return book.getTitle().equalsIgnoreCase(searchTerm);
+            case 2:
+                return book.getAuthor() != null && book.getAuthor().equalsIgnoreCase(searchTerm);
+            case 3:
+                return book.getISBN().equals(searchTerm);
+            case 4:
+                return book.getGenre() != null && book.getGenre().equalsIgnoreCase(searchTerm);
+            case 5:
+                return book.getPublisher() != null && book.getPublisher().equalsIgnoreCase(searchTerm);
+            case 6:
+                return book.getLanguage() != null && book.getLanguage().equalsIgnoreCase(searchTerm);
+            default:
+                throw new IllegalArgumentException("Error: Invalid Search, please select from the choices");
         }
-        return resultsTitle;
     }
-
 
     // ==========================================
-    static ArrayList<Book> getBookList() {
-        return bookList;
-    }
+    // retrieve and display books
 
     static void retrieveBooks(ArrayList<Book> bookList) {
         int pageSize = 5;
