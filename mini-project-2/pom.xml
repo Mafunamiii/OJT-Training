@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.Stratpoint</groupId>
+    <groupId>com.Jahnreil_Stratpoint</groupId>
     <artifactId>mini-project-2</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -31,7 +31,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>com.Stratpoint.Main</mainClass>
+                    <mainClass>com.Jahnreil_Stratpoint.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>

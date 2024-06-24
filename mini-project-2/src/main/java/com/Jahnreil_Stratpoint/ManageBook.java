@@ -1,4 +1,4 @@
-package com.Stratpoint;
+package com.Jahnreil_Stratpoint;
 
 import java.util.ArrayList;
 import java.util.List;
