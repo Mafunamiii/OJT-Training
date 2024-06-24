@@ -2,6 +2,7 @@ package com.Jahnreil_Stratpoint;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ManageBook {
@@ -114,8 +115,35 @@ public class ManageBook {
                 audioFormat
         ));
     }
+    // find book by ID
 
+    public Optional<Book> findBook (ArrayList<Book> bookList, int id) {
+
+        Optional<Book> FoundBook = bookList.stream()
+                .filter(book -> book.getBookid() == id)
+                .findFirst();
+
+        return FoundBook;
+    }
     // Remove book by ID
+    public void removeBookById(ArrayList<Book> bookList) {
+
+        System.out.print("\nRemove book [enter book id]: ");
+        String input = Main.inScanner.nextLine();
+
+        int id = Main.inputCheck(input, bookList.get(bookList.size()-1).getBookid());
+        System.out.println("Removing " +
+                bookList.get(findBook(bookList,id).get().getBookid()).getTitle()
+                + " (" +
+                bookList.get(findBook(bookList,id).get().getBookid()).getBookType()
+                + ")");
+        removeBook(id);
+
+        System.out.print("Book removal successful");
+
+        retrieveBooks(bookList);
+    }
+
     static void removeBook(int bookid) {
         bookList.removeIf(book -> book.getBookid() == bookid);
     }

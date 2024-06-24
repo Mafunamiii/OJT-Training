@@ -29,7 +29,7 @@ public class Main {
                 case 2:
                     break;
                 case 3:
-
+                    manageBooks.removeBookById(bookList);
                     break;
                 case 4:
                     manageBooks.searchBook(bookList);
