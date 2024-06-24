@@ -3,6 +3,8 @@ package com.Jahnreil_Stratpoint;
 import java.time.LocalDate;
 
 public class Book {
+    private int bookid;
+    private String bookType;
     private String title;
     private String author;
     private String isbn;
@@ -12,20 +14,25 @@ public class Book {
     private String synopsis;
     private String language;
 
-    public Book(String title, String isbn) {
+    public Book(int bookid, String bookType, String title, String isbn) {
+        this.bookid = bookid;
+        this.bookType = bookType;
         this.title = title;
         this.isbn = isbn;
     }
 
-    public Book(String title, String author, String isbn) {
+    public Book(int bookid, String bookType, String title, String author, String isbn) {
+        this.bookid = bookid;
+        this.bookType = bookType;
         this.title = title;
         this.author = author;
         this.isbn = isbn;
     }
 
-    public Book(String title, String author, String isbn, String genre, String publisher,
-                    LocalDate publicationDate, String synopsis, String language
-                    ) {
+    public Book(int bookid, String bookType, String title, String author, String isbn, String genre, String publisher,
+                LocalDate publicationDate, String synopsis, String language) {
+        this.bookid = bookid;
+        this.bookType = bookType;
         this.title = title;
         this.author = author;
         this.isbn = isbn;
@@ -34,6 +41,23 @@ public class Book {
         this.publicationDate = publicationDate;
         this.synopsis = synopsis;
         this.language = language;
+    }
+
+    // Getters and setters
+    public int getBookid() {
+        return bookid;
+    }
+
+    public void setBookid(int bookid) {
+        this.bookid = bookid;
+    }
+
+    public String getBookType() {
+        return bookType;
+    }
+
+    public void setBookType(String bookType) {
+        this.bookType = bookType;
     }
 
     public String getTitle() {
@@ -105,69 +129,70 @@ public class Book {
         private int pageCount;
         private double weightKG;
 
-        public hardBack(String title, String author, String isbn, String genre, String publisher,
+        public hardBack(int bookid, String bookType, String title, String author, String isbn, String genre, String publisher,
                         LocalDate publicationDate, String synopsis, String language,
                         String coverType, int pageCount, double weightKG) {
-            super(title, author, isbn, genre, publisher, publicationDate, synopsis, language);
+            super(bookid, bookType, title, author, isbn, genre, publisher, publicationDate, synopsis, language);
             this.coverType = coverType;
             this.pageCount = pageCount;
             this.weightKG = weightKG;
         }
 
-        public hardBack(String title, String isbn, int pagecount, double weight) {
-            super(title, isbn);
-            this.pageCount = pagecount;
-            this.weightKG = weight;
+        public hardBack(int bookid, String bookType, String title, String isbn, int pageCount, double weightKG) {
+            super(bookid, bookType, title, isbn);
+            this.pageCount = pageCount;
+            this.weightKG = weightKG;
         }
 
-        public hardBack(String title, String isbn, int pagecount) {
-            super(title, isbn);
-            this.pageCount = pagecount;
+        public hardBack(int bookid, String bookType, String title, String isbn, int pageCount) {
+            super(bookid, bookType, title, isbn);
+            this.pageCount = pageCount;
         }
 
+        // Getters and setters
         public String getCoverType() {
             return coverType;
         }
 
-        public void setCoverType(String covertype) {
-            this.coverType = covertype;
+        public void setCoverType(String coverType) {
+            this.coverType = coverType;
         }
 
         public int getPageCount() {
             return pageCount;
         }
 
-        public void setPageCount(int pagecount) {
-            this.pageCount = pagecount;
+        public void setPageCount(int pageCount) {
+            this.pageCount = pageCount;
         }
 
         public String getWeightKG() {
             return weightKG + "kg";
         }
 
-        public void setWeightKG(double weight) {
-            this.weightKG = weight;
+        public void setWeightKG(double weightKG) {
+            this.weightKG = weightKG;
         }
-
     }
 
     static class eBook extends Book {
         private String fileFormat;
         private double fileSizeMB;
 
-        public eBook(String title, String author, String isbn, String genre, String publisher,
-                        LocalDate publicationDate, String synopsis, String language,
-                         String fileFormat, double fileSizeMB) {
-            super(title, author, isbn, genre, publisher, publicationDate, synopsis, language);
+        public eBook(int bookid, String bookType, String title, String author, String isbn, String genre, String publisher,
+                     LocalDate publicationDate, String synopsis, String language,
+                     String fileFormat, double fileSizeMB) {
+            super(bookid, bookType, title, author, isbn, genre, publisher, publicationDate, synopsis, language);
             this.fileFormat = fileFormat;
             this.fileSizeMB = fileSizeMB;
         }
 
-        public eBook(String title, String isbn, String fileFormat) {
-            super(title, isbn);
+        public eBook(int bookid, String bookType, String title, String isbn, String fileFormat) {
+            super(bookid, bookType, title, isbn);
             this.fileFormat = fileFormat;
         }
 
+        // Getters and setters
         public String getFileFormat() {
             return fileFormat;
         }
@@ -176,41 +201,40 @@ public class Book {
             this.fileFormat = fileFormat;
         }
 
-        public String getfileSizeMB() {
+        public String getFileSizeMB() {
             return fileSizeMB + " MB";
         }
 
         public void setFileSizeMB(double fileSizeMB) {
             this.fileSizeMB = fileSizeMB;
         }
-
     }
 
     static class audioBook extends eBook {
         private String audioFormat;
         private String bitrate;
 
-        public audioBook(String title, String author, String isbn, String genre, String publisher,
+        public audioBook(int bookid, String bookType, String title, String author, String isbn, String genre, String publisher,
                          LocalDate publicationDate, String synopsis, String language,
                          String fileFormat, double fileSizeMB,
-                         String audioFormat, String bitrate)
-        {
-            super(title, author, isbn, genre, publisher, publicationDate, synopsis, language, fileFormat , fileSizeMB);
+                         String audioFormat, String bitrate) {
+            super(bookid, bookType, title, author, isbn, genre, publisher, publicationDate, synopsis, language, fileFormat, fileSizeMB);
             this.audioFormat = audioFormat;
             this.bitrate = bitrate;
         }
 
-        public audioBook(String title, String isbn, String fileFormat, String audioFormat, String bitrate) {
-            super(title, isbn, fileFormat);
-            this.audioFormat=audioFormat;
+        public audioBook(int bookid, String bookType, String title, String isbn, String fileFormat, String audioFormat, String bitrate) {
+            super(bookid, bookType, title, isbn, fileFormat);
+            this.audioFormat = audioFormat;
             this.bitrate = bitrate;
         }
 
-        public audioBook(String title, String isbn, String fileFormat, String audioFormat) {
-            super(title, isbn, fileFormat);
-            this.audioFormat=audioFormat;
+        public audioBook(int bookid, String bookType, String title, String isbn, String fileFormat, String audioFormat) {
+            super(bookid, bookType, title, isbn, fileFormat);
+            this.audioFormat = audioFormat;
         }
 
+        // Getters and setters
         public String getBitrate() {
             return bitrate;
         }
@@ -226,9 +250,5 @@ public class Book {
         public void setAudioFormat(String audioFormat) {
             this.audioFormat = audioFormat;
         }
-
     }
-
 }
-
-
