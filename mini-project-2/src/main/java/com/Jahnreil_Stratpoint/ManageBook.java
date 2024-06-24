@@ -10,24 +10,28 @@ public class ManageBook {
         this.bookList = bookList;
     }
 
-   public void addBook(String title, String isbn) {
-        bookList.add(new Book(title,isbn));
+    public void addBook(int bookid, String bookType, String title, String isbn) {
+        bookList.add(new Book(bookid, bookType, title, isbn));
     }
 
-    public void addBook(String title,String author, String isbn) {
-        bookList.add(new Book(title, author, isbn));
+    public void addBook(int bookid, String bookType, String title, String author, String isbn) {
+        bookList.add(new Book(bookid, bookType, title, author, isbn));
     }
 
-    public void addHardBack(Book book, int pagecount) {
+    public void addHardBack(Book book,int bookid, String bookType,  int pagecount) {
         bookList.add(new Book.hardBack(
+                bookid,
+                bookType,
                 book.getTitle(),
                 book.getISBN(),
                 pagecount
         ));
     }
 
-    public void addHardBack(Book book, String coverType, int pageCount, double weightKG) {
+    public void addHardBack( Book book, int bookid, String bookType, String coverType, int pageCount, double weightKG) {
         bookList.add(new Book.hardBack(
+                bookid,
+                bookType,
                 book.getTitle(),
                 book.getAuthor(),
                 book.getISBN(),
@@ -42,8 +46,10 @@ public class ManageBook {
         ));
     }
 
-    public void addEBook(Book book, String fileFormat, double fileSize) {
+    public void addEBook(Book book, int bookid, String bookType, String fileFormat, double fileSize) {
         bookList.add(new Book.eBook(
+                bookid,
+                bookType,
                 book.getTitle(),
                 book.getAuthor(),
                 book.getISBN(),
@@ -57,18 +63,20 @@ public class ManageBook {
         ));
     }
 
-    public void addEBook(Book book, String fileFormat) {
+    public void addEBook( Book book, int bookid, String bookType, String fileFormat) {
         bookList.add(new Book.eBook(
+                bookid,
+                bookType,
                 book.getTitle(),
                 book.getISBN(),
                 fileFormat
         ));
     }
 
-
-
-    public void addAudioBook(Book book, String fileFormat, double fileSize, String audioFormat, String bitrate) {
+    public void addAudioBook(Book book, int bookid, String bookType, String fileFormat, double fileSize, String audioFormat, String bitrate) {
         bookList.add(new Book.audioBook(
+                bookid,
+                bookType,
                 book.getTitle(),
                 book.getAuthor(),
                 book.getISBN(),
@@ -84,8 +92,10 @@ public class ManageBook {
         ));
     }
 
-    public void addAudioBook(Book book, String fileFormat, String audioFormat, String bitrate) {
+    public void addAudioBook(Book book, int bookid, String bookType, String fileFormat, String audioFormat, String bitrate) {
         bookList.add(new Book.audioBook(
+                bookid,
+                bookType,
                 book.getTitle(),
                 book.getISBN(),
                 fileFormat,
@@ -94,8 +104,10 @@ public class ManageBook {
         ));
     }
 
-    static void addAudioBook(Book book, String fileFormat, String audioFormat) {
+    static void addAudioBook(Book book, int bookid, String bookType, String fileFormat, String audioFormat) {
         bookList.add(new Book.audioBook(
+                bookid,
+                bookType,
                 book.getTitle(),
                 book.getISBN(),
                 fileFormat,
@@ -103,10 +115,9 @@ public class ManageBook {
         ));
     }
 
-    // ==========================================
-    // remove book by id
-    static void removeBook(String isbn) {
-
+    // Remove book by ID
+    static void removeBook(int bookid) {
+        bookList.removeIf(book -> book.getBookid() == bookid);
     }
 
     // ==========================================
@@ -230,7 +241,9 @@ public class ManageBook {
         while (true) {
             System.out.println("\n\n============================================= Book Catalog =============================================");
             System.out.println(String.format(
-                    "%-45s || %-30s || %-15s",
+                    "%5s || %13s || %-45s || %-30s || %-15s",
+                    "id",
+                    "Book Type",
                     "Title",
                     "Author",
                     "ISBN"
@@ -249,7 +262,9 @@ public class ManageBook {
                         book.setAuthor("Not Indicated");
                     }
                     System.out.println(String.format(
-                            "%-45s || %-30s || %-15s",
+                            "%5s || %13s || %-45s || %-30s || %-15s",
+                            book.getBookid(),
+                            book.getBookType(),
                             book.getTitle(),
                             book.getAuthor(),
                             book.getISBN()
