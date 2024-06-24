@@ -126,6 +126,8 @@ public class ManageBook {
             String input = Main.inScanner.nextLine();
             int choice = Main.inputCheck(input, 6);
 
+            int searchTermChoice = 0;
+
             switch (choice) {
                 case 1:
                     System.out.print("\nEnter Title: ");
@@ -140,9 +142,8 @@ public class ManageBook {
                     System.out.print("\nEnter Author: ");
                     String author = Main.inScanner.nextLine();
                     for (Book book: bookList) {
-                        System.out.println("Auth: " + book.getAuthor());
-                        if (!Objects.equals(book.getAuthor(),null)) {
-                            if (book.getTitle().equalsIgnoreCase(author)) {
+                        if (!Objects.equals(book.getAuthor(),null)) { // author may not be present for some books
+                            if (book.getAuthor().equalsIgnoreCase(author)) {
                                 results.add(book);
                             }
                         }
@@ -152,20 +153,22 @@ public class ManageBook {
                     System.out.print("\nEnter ISBN: ");
                     String isbn = Main.inScanner.nextLine();
                     for (Book book: bookList) {
-                        if (book.getISBN().equalsIgnoreCase(isbn)) {
+                        if (book.getISBN().equals(isbn)) {
                             results.add(book);
                         }
                     }
-                    break;
+                    break searchbook;
                 case 4:
                     System.out.print("\nEnter Genre: ");
                     String genre = Main.inScanner.nextLine();
                     for (Book book: bookList) {
-                        if (book.getGenre().equalsIgnoreCase(genre)) {
-                            results.add(book);
+                        if (!Objects.equals(book.getGenre(),null)) { // author may not be present for some books
+                            if (book.getGenre().equalsIgnoreCase(genre)) {
+                                results.add(book);
+                            }
                         }
                     }
-                    break;
+                    break searchbook;
                 case 5:
 
                     break;
@@ -245,7 +248,6 @@ public class ManageBook {
                     System.out.println("Invalid input, select from the choices");
                     break;
                 case 1:
-                    // Move to the next page
                     if (targetPage < bookList.size() - 1) {
                         catalogPage += pageSize;
                         targetPage += pageSize;
