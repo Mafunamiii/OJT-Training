@@ -1,4 +1,4 @@
-package com.example;
+package com.Stratpoint;
 
 import java.util.ArrayList;
 import java.util.Scanner;
