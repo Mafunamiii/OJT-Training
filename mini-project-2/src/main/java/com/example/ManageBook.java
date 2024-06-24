@@ -1,9 +1,7 @@
-package org.example;
+package com.example;
 
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.Objects;
 
 public class ManageBook {
     static ArrayList<Book> bookList = new ArrayList<Book>();
@@ -114,6 +112,8 @@ public class ManageBook {
 
     public void searchBook(ArrayList<Book> bookList) {
         ArrayList<Book> results = new ArrayList<>();
+
+        searchbook:
         while (true) {
             System.out.print(
                     "\n============== Search by? ==============\n" +
@@ -135,16 +135,19 @@ public class ManageBook {
                             results.add(book);
                         }
                     }
-                    break;
+                    break searchbook;
                 case 2:
                     System.out.print("\nEnter Author: ");
                     String author = Main.inScanner.nextLine();
                     for (Book book: bookList) {
-                        if (book.getAuthor().equalsIgnoreCase(author)) {
-                            results.add(book);
+                        System.out.println("Auth: " + book.getAuthor());
+                        if (!Objects.equals(book.getAuthor(),null)) {
+                            if (book.getTitle().equalsIgnoreCase(author)) {
+                                results.add(book);
+                            }
                         }
                     }
-                    break;
+                    break searchbook;
                 case 3:
                     System.out.print("\nEnter ISBN: ");
                     String isbn = Main.inScanner.nextLine();
@@ -173,7 +176,7 @@ public class ManageBook {
                     System.out.println("Invalid input, Select from the choices above");
             }
         }
-
+        retrieveBooks(results);
     }
 
     static ArrayList<Book> searchBookTitle(String title) {
@@ -262,6 +265,7 @@ public class ManageBook {
                     break;
                 case 3:
                     return;
+
             }
         }
     }

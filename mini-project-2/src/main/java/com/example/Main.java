@@ -1,4 +1,4 @@
-package org.example;
+package com.example;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,25 +17,30 @@ public class Main {
     }
 
     static void libraryManagement() {
-        int choice = mainMenu();
 
-        switch (choice){
-            case 1:
-                manageBooks.retrieveBooks(bookList);
-                break;
-           case 2:
-                manageBooks.searchBook(bookList);
-                break;
-            case 3:
+        boolean runLibManage = true;
+        while (runLibManage) {
+            int choice = mainMenu();
+            System.out.println("choice: "  + choice);
+            switch (choice){
+                case 1:
+                    manageBooks.retrieveBooks(bookList);
+                    break;
+                case 2:
+                    break;
+                case 3:
 
-                break;
-            case 4:
-
-                break;
-            case 5:
-
-
+                    break;
+                case 4:
+                    manageBooks.searchBook(bookList);
+                    break;
+                case 5:
+                    System.out.println("Exiting program");
+                    runLibManage = false;
+                    break;
+            }
         }
+
     }
 
     static int mainMenu() {
@@ -52,11 +57,8 @@ public class Main {
                             "          [5] Exit\n►");
 
             String inputStr = inScanner.nextLine();
-            int temp = inputCheck(inputStr, 5);
-            if (temp != 0 && temp < 5) {
-                menuChoice = temp;
-                break;
-            }
+            menuChoice = inputCheck(inputStr, 5);
+            break inputLoop;
         }
         return menuChoice;
     }
