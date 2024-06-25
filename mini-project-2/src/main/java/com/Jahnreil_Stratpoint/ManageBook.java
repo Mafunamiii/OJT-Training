@@ -11,14 +11,22 @@ public class ManageBook {
         this.bookList = bookList;
     }
 
+
+    // ==========================================
+    // add books
+    public void addBook (ArrayList<Book> bookList) {
+        System.out.println("""
+            ======== Add Book ========
+               [1] 
+        """);
+    }
+
     public void addBook(int bookid, String bookType, String title, String isbn) {
         bookList.add(new Book(bookid, bookType, title, isbn));
     }
-
     public void addBook(int bookid, String bookType, String title, String author, String isbn) {
         bookList.add(new Book(bookid, bookType, title, author, isbn));
     }
-
     public void addHardBack(Book book,int bookid, String bookType,  int pagecount) {
         bookList.add(new Book.hardBack(
                 bookid,
@@ -28,7 +36,6 @@ public class ManageBook {
                 pagecount
         ));
     }
-
     public void addHardBack( Book book, int bookid, String bookType, String coverType, int pageCount, double weightKG) {
         bookList.add(new Book.hardBack(
                 bookid,
@@ -46,7 +53,6 @@ public class ManageBook {
                 weightKG
         ));
     }
-
     public void addEBook(Book book, int bookid, String bookType, String fileFormat, double fileSize) {
         bookList.add(new Book.eBook(
                 bookid,
@@ -63,7 +69,6 @@ public class ManageBook {
                 fileSize
         ));
     }
-
     public void addEBook( Book book, int bookid, String bookType, String fileFormat) {
         bookList.add(new Book.eBook(
                 bookid,
@@ -73,7 +78,6 @@ public class ManageBook {
                 fileFormat
         ));
     }
-
     public void addAudioBook(Book book, int bookid, String bookType, String fileFormat, double fileSize, String audioFormat, String bitrate) {
         bookList.add(new Book.audioBook(
                 bookid,
@@ -92,7 +96,6 @@ public class ManageBook {
                 bitrate
         ));
     }
-
     public void addAudioBook(Book book, int bookid, String bookType, String fileFormat, String audioFormat, String bitrate) {
         bookList.add(new Book.audioBook(
                 bookid,
@@ -104,7 +107,6 @@ public class ManageBook {
                 bitrate
         ));
     }
-
     static void addAudioBook(Book book, int bookid, String bookType, String fileFormat, String audioFormat) {
         bookList.add(new Book.audioBook(
                 bookid,
@@ -115,8 +117,8 @@ public class ManageBook {
                 audioFormat
         ));
     }
+    // ==========================================
     // find book by ID
-
     public Optional<Book> findBook (ArrayList<Book> bookList, int id) {
 
         Optional<Book> FoundBook = bookList.stream()
@@ -125,25 +127,46 @@ public class ManageBook {
 
         return FoundBook;
     }
+
+    // ==========================================
     // Remove book by ID
     public void removeBookById(ArrayList<Book> bookList) {
 
-        System.out.print("\nRemove book [enter book id]: ");
-        String input = Main.inScanner.nextLine();
+        while(true) {
+            System.out.print("\nRemove book [enter book id]: ");
+            String input = Main.inScanner.nextLine();
 
-        int id = Main.inputCheck(input, bookList.get(bookList.size()-1).getBookid());
-        System.out.println("Removing " +
-                bookList.get(findBook(bookList,id).get().getBookid()).getTitle()
-                + " (" +
-                bookList.get(findBook(bookList,id).get().getBookid()).getBookType()
-                + ")");
-        removeBook(id);
+            InputResult inputcheck = InputResult.inputCheck(input, bookList.size());
+            int id;
+            if (inputcheck.isValid) {
+                id = inputcheck.valueInt;
+            } else {
+                continue;
+            }
 
-        System.out.print("Book removal successful");
+            try {
+                if (id < bookList.size()) {
+                    System.out.println("Removing " +
+                            bookList.get(findBook(bookList,id-1).get().getBookid()).getTitle()
+                            + " (" +
+                            bookList.get(findBook(bookList,id-1).get().getBookid()).getBookType()
+                            + ")");
+                    removeBook(id);
+                    break;
+                } else {
+                    throw new IllegalArgumentException("Book ID not found");
+                }
+            } catch(Exception e) {
+                System.out.println("Book ID was not found, must be an existing book to continue");
+                continue;
+            }
 
-        retrieveBooks(bookList);
+        }
+
+            System.out.print("Book removal successful");
+
+            retrieveBooks(bookList);
     }
-
     static void removeBook(int bookid) {
         bookList.removeIf(book -> book.getBookid() == bookid);
     }
@@ -168,75 +191,22 @@ public class ManageBook {
                                 [7] Back to Main menu
                     ►""");
             String input = Main.inScanner.nextLine();
-            searchTypeChoice = Main.inputCheck(input, 6);
-
-            System.out.print("\nSearch: ");
-            searchTerm = Main.inScanner.nextLine();
+            InputResult inputcheck = InputResult.inputCheck(input, 7);
+            searchTypeChoice = inputcheck.valueInt;
 
             if (searchTypeChoice == 7) {
                 return;
             }
-            /*
-            switch (choice) {
-                case 1:
 
-                    System.out.print("\nEnter Title: ");
-                    String title = Main.inScanner.nextLine();
-                    for (Book book: bookList) {
-                        if (book.getTitle().equalsIgnoreCase(title)) {
-                            results.add(book);
-                        }
-                    }
-                    searchTypeChoice = 1;
-                    break searchbook;
-                case 2:
-                    System.out.print("\nEnter Author: ");
-                    String author = Main.inScanner.nextLine();
-                    for (Book book: bookList) {
-                        if (!Objects.equals(book.getAuthor(),null)) { // author may not be present for some books
-                            if (book.getAuthor().equalsIgnoreCase(author)) {
-                                results.add(book);
-                            }
-                        }
-                    }
-                    break searchbook;
-                case 3:
-                    System.out.print("\nEnter ISBN: ");
-                    String isbn = Main.inScanner.nextLine();
-                    for (Book book: bookList) {
-                        if (book.getISBN().equals(isbn)) {
-                            results.add(book);
-                        }
-                    }
-                    break searchbook;
-                case 4:
-                    System.out.print("\nEnter Genre: ");
-                    String genre = Main.inScanner.nextLine();
-                    for (Book book: bookList) {
-                        if (!Objects.equals(book.getGenre(),null)) { // author may not be present for some books
-                            if (book.getGenre().equalsIgnoreCase(genre)) {
-                                results.add(book);
-                            }
-                        }
-                    }
-                    break searchbook;
-                case 5:
+            System.out.print("\nSearch: ");
+            searchTerm = Main.inScanner.nextLine();
 
-                    break;
-                case 6:
-
-                    break;
-                default:
-                    System.out.println("Invalid input, Select from the choices above");
-            }
-        }*/
             List<Book> results = bookList.stream()
                     .filter(book -> matchSearch(book, searchTypeChoice, searchTerm))
                     .collect(Collectors.toList());
             retrieveBooks((ArrayList<Book>) results);
             break;
         }
-
     }
     static boolean matchSearch(Book book, int searchType, String searchTerm) {
         switch (searchType){
@@ -259,7 +229,6 @@ public class ManageBook {
 
     // ==========================================
     // retrieve and display books
-
     static void retrieveBooks(ArrayList<Book> bookList) {
         int pageSize = 5;
         int currentPage = 1;
@@ -309,32 +278,36 @@ public class ManageBook {
                     "[2] View previous page\n" +
                     "[3] Back to Main Menu");
             String inputStr = Main.inScanner.nextLine();
-            switch (Main.inputCheck(inputStr, 3)) {
-                case 0:
-                    System.out.println("Invalid input, select from the choices");
-                    break;
-                case 1:
-                    if (targetPage < bookList.size() - 1) {
-                        catalogPage += pageSize;
-                        targetPage += pageSize;
-                        currentPage++;
-                    } else {
-                        System.out.println("\n\n===== No more pages to view. =====");
-                    }
-                    break;
-                case 2:
-                    if (catalogPage > 0) {
-                        catalogPage -= pageSize;
-                        targetPage = catalogPage + pageSize - 1;
-                        currentPage--;
-                    } else {
-                        System.out.println("\n\n===== Already on the first page. =====");
-                    }
-                    break;
-                case 3:
-                    return;
+            InputResult inputcheck = InputResult.inputCheck(inputStr,3);
+            if (inputcheck.isValid) {
+                switch (inputcheck.valueInt) {
+                    case 0:
+                        System.out.println("Invalid input, select from the choices");
+                        break;
+                    case 1:
+                        if (targetPage < bookList.size() - 1) {
+                            catalogPage += pageSize;
+                            targetPage += pageSize;
+                            currentPage++;
+                        } else {
+                            System.out.println("\n\n===== No more pages to view. =====");
+                        }
+                        break;
+                    case 2:
+                        if (catalogPage > 0) {
+                            catalogPage -= pageSize;
+                            targetPage = catalogPage + pageSize - 1;
+                            currentPage--;
+                        } else {
+                            System.out.println("\n\n===== Already on the first page. =====");
+                        }
+                        break;
+                    case 3:
+                        return;
 
+                }
             }
+
         }
     }
 

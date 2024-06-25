@@ -1,6 +1,9 @@
 package com.Jahnreil_Stratpoint;
 
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +11,8 @@ public class Main {
     static Scanner inScanner = new Scanner(System.in);
     static ManageBook manageBooks;
     static loadBooks loadBooks;
+    private boolean isValid;
+    private int value;
 
     public static void main(String[] args) {
         manageBooks = new ManageBook(bookList);
@@ -57,32 +62,14 @@ public class Main {
                             "          [5] Exit\n►");
 
             String inputStr = inScanner.nextLine();
-            menuChoice = inputCheck(inputStr, 5);
-            break inputLoop;
+            InputResult inputResult = InputResult.inputCheck(inputStr,5);
+            if (inputResult.isValid) {
+                menuChoice = inputResult.valueInt;
+                break;
+            }
+            break;
         }
         return menuChoice;
     }
-
-    public static int inputCheck (String input, int maxChoice) {
-        int inputStr = 0;
-        try {
-            if (input.isEmpty()) {
-                throw new IllegalArgumentException("Input cannot be empty");
-            }
-            inputStr = Integer.parseInt(input);
-            if (inputStr < 0 || inputStr > maxChoice) {
-                System.out.println("Invalid Input, select from the choices");
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid Input, select from the choices");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
-        } catch (Exception e) {
-            System.out.println("Unexpected error: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return inputStr;
-    }
-
 
 }
