@@ -1,0 +1,11 @@
+bookType,title,isbn,pagecount,bookweight
+hardback,To Kill a Mockingbird,978-0060935467,384,1.2
+hardback,The Hobbit,978-0547928227,310,1.5
+hardback,Brave New World,978-0060850524,268,1.3
+hardback,Moby Dick,978-1503280786,635,1.8
+hardback,War and Peace,978-1400079988,1225,2.5
+hardback,The Odyssey,978-0140268867,561,1.7
+hardback,The Great Gatsby,978-0743273565,180,0.5
+hardback,The Catcher in the Rye,978-0316769488,214,0.6
+hardback,1984,978-0451524935,328,1.4
+hardback,Pride and Prejudice,978-1503290563,432,1.1
