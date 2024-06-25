@@ -191,6 +191,10 @@ public class Book {
             super(bookid, bookType, title, isbn);
             this.fileFormat = fileFormat;
         }
+        public eBook(int bookid, String bookType, String title, String author, String isbn, String fileFormat) {
+            super(bookid, bookType, title, author, isbn);
+            this.fileFormat = fileFormat;
+        }
 
         // Getters and setters
         public String getFileFormat() {
