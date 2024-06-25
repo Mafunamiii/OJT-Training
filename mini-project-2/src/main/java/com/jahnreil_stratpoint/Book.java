@@ -1,4 +1,4 @@
-package com.Jahnreil_Stratpoint;
+package com.jahnreil_stratpoint;
 
 import java.time.LocalDate;
 

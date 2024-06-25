@@ -1,9 +1,7 @@
-package com.Jahnreil_Stratpoint;
+package com.jahnreil_stratpoint;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {

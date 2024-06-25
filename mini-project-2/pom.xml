@@ -31,7 +31,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>com.Jahnreil_Stratpoint.Main</mainClass>
+                    <mainClass>com.jahnreil_stratpoint.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
