@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         manageBooks = new ManageBook(bookList);
         loadBooks =  new loadBooks(bookList,manageBooks);
-        bookList = loadBooks.loadToList();
+        bookList = loadBooks.loadFromCSV();
         libraryManagement();
     }
 
@@ -30,6 +30,7 @@ public class Main {
                     manageBooks.retrieveBooks(bookList);
                     break;
                 case 2:
+                    manageBooks.addBook(bookList);
                     break;
                 case 3:
                     manageBooks.removeBookById(bookList);
@@ -60,7 +61,7 @@ public class Main {
                             "          [5] Exit\n►");
 
             String inputStr = inScanner.nextLine();
-            InputResult inputResult = InputResult.inputCheck(inputStr,5);
+            InputResult inputResult = InputResult.inputCheck(inputStr,5,1);
             if (inputResult.isValid) {
                 menuChoice = inputResult.valueInt;
                 break;
