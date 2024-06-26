@@ -935,7 +935,7 @@ public class ManageBook {
 
                 List<Book> results = bookList.stream()
                         .filter(book -> matchSearch(book, searchTypeChoice, searchTerm))
-                        .collect(Collectors.toList());
+                        .toList();
                 retrieveBooks((ArrayList<Book>) results);
                 break;
             } else {
@@ -984,7 +984,7 @@ public class ManageBook {
         int catalogPage = 0;
         int targetPage = pageSize - 1;
 
-        ExecutorService executor = Executors.newFixedThreadPool(2); // Adjust number of threads as needed
+        ExecutorService executor = Executors.newFixedThreadPool(2); 
 
         try {
             while (true) {

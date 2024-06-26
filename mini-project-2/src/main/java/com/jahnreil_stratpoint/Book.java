@@ -266,10 +266,6 @@ public class Book {
             super(bookid, bookType, title, isbn, fileFormat);
             this.audioFormat = audioFormat;
         }
-        /**
-         * Gets the bitrate of the audio book.
-         *
-         * @return The bitrate of the audio book.
-         */
+
     }
 }
