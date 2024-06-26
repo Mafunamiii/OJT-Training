@@ -13,7 +13,7 @@ public class BookTest {
         assertEquals(1, book.getBookid());
         assertEquals("regular", book.getBookType());
         assertEquals("Sample Book", book.getTitle());
-        assertEquals("1234567890", book.getISBN());
+        assertEquals("1234567890", book.getIsbn());
         assertNull(book.getAuthor());
         assertNull(book.getGenre());
         assertNull(book.getPublisher());
@@ -30,7 +30,7 @@ public class BookTest {
         assertEquals("eBook", book.getBookType());
         assertEquals("Example eBook", book.getTitle());
         assertEquals("John Doe", book.getAuthor());
-        assertEquals("0987654321", book.getISBN());
+        assertEquals("0987654321", book.getIsbn());
         assertNull(book.getGenre());
         assertNull(book.getPublisher());
         assertNull(book.getPublicationDate());
@@ -48,7 +48,7 @@ public class BookTest {
         assertEquals("audioBook", book.getBookType());
         assertEquals("Audiobook Example", book.getTitle());
         assertEquals("Jane Smith", book.getAuthor());
-        assertEquals("5678901234", book.getISBN());
+        assertEquals("5678901234", book.getIsbn());
         assertEquals("Fiction", book.getGenre());
         assertEquals("PublisherX", book.getPublisher());
         assertEquals(publicationDate, book.getPublicationDate());
@@ -71,7 +71,7 @@ public class BookTest {
         assertEquals(4, book.getBookid());
         assertEquals("regular", book.getBookType());
         assertEquals("Book with Setters", book.getTitle());
-        assertEquals("5432109876", book.getISBN());
+        assertEquals("5432109876", book.getIsbn());
         assertEquals("Mark Johnson", book.getAuthor());
         assertEquals("Non-fiction", book.getGenre());
         assertEquals("PublisherY", book.getPublisher());

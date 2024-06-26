@@ -10,35 +10,6 @@ import java.util.stream.Collectors;
 
 import java.util.concurrent.*;
 
-/*
-    ADDBOOKS:
-    void addBook(ArrayList<Book> bookList) = accepts the booklist as a parameter and contains the main menu of what type of book the user wants to add
-    void addRegularBook() = presents options for adding a regular book with varying levels of detail (title, author, ISBN, genre, etc.)
-    void addHardBackBook() = presents options for adding a hardback book with varying levels of detail (title, author, ISBN, genre, cover type, etc.)
-    void addEBookBook() = presents options for adding an eBook with varying levels of detail (title, author, ISBN, genre, file format, file size, etc.)
-    void addAudioBook() = presents options for adding an audiobook with varying levels of detail (title, author, ISBN, genre, file format, audio format, bitrate, etc.)
-
-    (Remaining addbooks are for specific constructors, mentioned above are the main addbook methods)
-
-    FINDBOOK:
-    Optional<Book> findBook(ArrayList<Book> bookList, int id) = finds and returns a book from the list by ID if present
-
-    REMOVEBOOK:
-    void removeBookById(ArrayList<Book> bookList) = prompts user to enter book ID and removes corresponding book from list if found
-    void removeBook(int bookid) = removes a book from the list by its ID
-
-    SEARCHBOOK:
-    void searchBook(ArrayList<Book> bookList) = allows user to search for books by various criteria and displays matching results
-    boolean matchSearch(Book book, int searchType, String searchTerm) = helper method to match a book against a search term based on specified criteria
-
-    RETRIEVE AND DISPLAY BOOK INFORMATION:
-    static void retrieveBooks(ArrayList<Book> bookList) = displays a paginated catalog of books with details such as ID, type, title, author, and ISBN
-    static void viewBook(ArrayList<Book> bookList) = prompts user to enter a book ID and displays detailed information about the selected book
-
-    DATEPARSER:
-    LocalDate parsedate() = prompts user to enter a publication date in 'yyyy-MM-dd' format and parses it into a LocalDate object
- */
-
 /**
  * Manages a list of books and provides operations to manipulate them.
  */
@@ -60,7 +31,6 @@ public class ManageBook {
     public ManageBook (ArrayList<Book> bookList) {
         this.bookList = bookList;
     }
-
     // ==========================================
     // add books
     /**
@@ -697,7 +667,7 @@ public class ManageBook {
                 bookid,
                 bookType,
                 book.getTitle(),
-                book.getISBN(),
+                book.getIsbn(),
                 pagecount
         ));
     }
@@ -716,7 +686,7 @@ public class ManageBook {
                 bookid,
                 bookType,
                 book.getTitle(),
-                book.getISBN(),
+                book.getIsbn(),
                 pagecount,
                 weight
         ));
@@ -738,7 +708,7 @@ public class ManageBook {
                 bookType,
                 book.getTitle(),
                 book.getAuthor(),
-                book.getISBN(),
+                book.getIsbn(),
                 book.getGenre(),
                 book.getPublisher(),
                 book.getPublicationDate(),
@@ -765,7 +735,7 @@ public class ManageBook {
                 bookType,
                 book.getTitle(),
                 book.getAuthor(),
-                book.getISBN(),
+                book.getIsbn(),
                 book.getGenre(),
                 book.getPublisher(),
                 book.getPublicationDate(),
@@ -788,7 +758,7 @@ public class ManageBook {
                 bookid,
                 bookType,
                 book.getTitle(),
-                book.getISBN(),
+                book.getIsbn(),
                 fileFormat
         ));
     }
@@ -812,7 +782,7 @@ public class ManageBook {
                 bookType,
                 book.getTitle(),
                 book.getAuthor(),
-                book.getISBN(),
+                book.getIsbn(),
                 book.getGenre(),
                 book.getPublisher(),
                 book.getPublicationDate(),
@@ -840,28 +810,20 @@ public class ManageBook {
                 bookid,
                 bookType,
                 book.getTitle(),
-                book.getISBN(),
+                book.getIsbn(),
                 fileFormat,
                 audioFormat,
                 bitrate
         ));
     }
-    /**
-     * Adds an AudioBook to the book list with basic information and no bitrate specified.
-     *
-     * @param book The book object to add.
-     * @param bookid The unique identifier of the book.
-     * @param bookType The type of the book (e.g., "AudioBook").
-     * @param fileFormat The format of the audio book file.
-     * @param audioFormat The format of the audio in the book (e.g., MP3, AAC).
-     */
+
     static void addAudioBook(Book book, int bookid, String bookType, String fileFormat,
                              String audioFormat) {
         bookList.add(new Book.audioBook(
                 bookid,
                 bookType,
                 book.getTitle(),
-                book.getISBN(),
+                book.getIsbn(),
                 fileFormat,
                 audioFormat
         ));
@@ -997,7 +959,7 @@ public class ManageBook {
             case 2:
                 return book.getAuthor() != null && book.getAuthor().equalsIgnoreCase(searchTerm);
             case 3:
-                return book.getISBN().equals(searchTerm);
+                return book.getIsbn().equals(searchTerm);
             case 4:
                 return book.getGenre() != null && book.getGenre().equalsIgnoreCase(searchTerm);
             case 5:
@@ -1056,7 +1018,7 @@ public class ManageBook {
                                         book.getBookType(),
                                         book.getTitle(),
                                         book.getAuthor(),
-                                        book.getISBN()
+                                        book.getIsbn()
                                 )
                         );
                         return null;
@@ -1155,7 +1117,7 @@ public class ManageBook {
                         "BOOK: " + bookList.get(inputcheck.valueInt).getTitle() + " (" +
                                 bookList.get(inputcheck.valueInt).getBookType() + ") " +
                         "\n Author/s: " + author +
-                        "\n ISBN: " + bookList.get(inputcheck.valueInt).getISBN() +
+                        "\n ISBN: " + bookList.get(inputcheck.valueInt).getIsbn() +
                         "\n Genre: " + genre +
                         "\n Publiser: " + publisher +
                         "\n Publication Date: " + dateStr +
@@ -1168,8 +1130,6 @@ public class ManageBook {
 
 
     }
-
-
     // ==========================================
     // date parser
     /**
@@ -1198,6 +1158,4 @@ public class ManageBook {
         }
         return result;
     }
-
-
 }

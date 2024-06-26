@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 
 public class Main {
-    static ArrayList<Book> bookList = new ArrayList<Book>();
+    static ArrayList<Book> bookList = new ArrayList<>();
     static Scanner inScanner = new Scanner(System.in);
     static ManageBook manageBooks;
     static loadBooks loadBooks;
