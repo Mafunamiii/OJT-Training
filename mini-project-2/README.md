@@ -6,6 +6,13 @@ This is a Java-based Library Management System that allows users to manage a cat
 ## Technical Details
 - Programming Language used: Java (JDK 17)
 - Build: Maven
+- Dependencies: 
+  - junit-jupiter (5.10.2)
+  - mockito-core (5.12.0)
+- plugins: 
+  - maven compiler plugin (3.11.0)
+  - maven surefire plugin (3.0.0-M5)
+  - exec maven plugin (3.1.0)
 
 ## notes:
 - ISBN validator not implemented
