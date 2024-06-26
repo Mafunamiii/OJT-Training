@@ -1,14 +1,15 @@
 package com.jahnreil_stratpoint;
 
 import java.io.BufferedReader;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Utility class to load book data from CSV files into an ArrayList of books using a specified management class.
- */
 
+/**
+ * Utility class to load book data from CSV and JSON files into an ArrayList of books using a specified management class.
+ */
 public class loadBooks {
     private ArrayList<Book> BookList;
     private ManageBook managebook;
@@ -19,7 +20,6 @@ public class loadBooks {
      * @param bookList     The ArrayList where books will be loaded.
      * @param managebooks  The management class used to add books to the list.
      */
-
     public loadBooks(ArrayList<Book> bookList, ManageBook managebooks) {
         this.BookList = bookList;
         this.managebook = managebooks;
@@ -49,6 +49,7 @@ public class loadBooks {
 
         return BookList;
     }
+
     /**
      * Parses a CSV file containing book data and adds them to the BookList ArrayList.
      *
