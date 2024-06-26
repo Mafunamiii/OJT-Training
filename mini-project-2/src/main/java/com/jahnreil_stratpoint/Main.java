@@ -24,7 +24,7 @@ public class Main {
         boolean runLibManage = true;
         while (runLibManage) {
             int choice = mainMenu();
-            System.out.println("choice: "  + choice);
+
             switch (choice){
                 case 1:
                     manageBooks.retrieveBooks(bookList);
@@ -39,6 +39,9 @@ public class Main {
                     manageBooks.searchBook(bookList);
                     break;
                 case 5:
+                    manageBooks.viewBook(bookList);
+                    break;
+                case 6:
                     System.out.println("Exiting program");
                     runLibManage = false;
                     break;
@@ -51,17 +54,21 @@ public class Main {
         int menuChoice = 0;
         inputLoop:
         while (true) {
-            System.out.print(
-                    "\n\n==========================================\n" +
-                            "       Library Management System\n" +
-                            "          [1] Browse Catalog\n"+
-                            "          [2] Add Book\n"+
-                            "          [3] Remove Book\n"+
-                            "          [4] Search Book\n"+
-                            "          [5] Exit\n►");
+            System.out.print("""
+                            
+                            ==========================================
+                                    Library Management System
+                                    [1] Browse Catalog
+                                    [2] Add Book
+                                    [3] Remove Book
+                                    [4] Search Book
+                                    [5] View Book Details
+                                    [6] Exit
+                            ►"""
+            );
 
             String inputStr = inScanner.nextLine();
-            InputResult inputResult = InputResult.inputCheck(inputStr,5,1);
+            InputResult inputResult = InputResult.inputCheck(inputStr,6,1);
             if (inputResult.isValid) {
                 menuChoice = inputResult.valueInt;
                 break;
