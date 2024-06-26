@@ -2,13 +2,14 @@
 
 This is a Java-based Library Management System that allows users to manage a catalog of books, including regular books, hardback books, e-books, and audiobooks.
 ## Java Documentation
-- [Link to Javadoc](https://docshoster.org/p/mafunamiii/ojt-training/latest/com/jahnreil_stratpoint/package-summary.html)
+- [Link to Javadoc](https://docshoster.org/p/mafunamiii/mini-project-2/latest/com/jahnreil_stratpoint/package-summary.html)
 ## Technical Details
 - Programming Language used: Java (JDK 17)
 - Build: Maven
 - Dependencies: 
   - junit-jupiter (5.10.2)
   - mockito-core (5.12.0)
+  - lombok (1.18.24)
 - plugins: 
   - maven compiler plugin (3.11.0)
   - maven surefire plugin (3.0.0-M5)
