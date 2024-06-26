@@ -1,16 +1,25 @@
 package com.jahnreil_stratpoint;
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
+/*
+    void main(String[] args) = where library Management is run
+    void libraryManagemetn() = contain the abstract processes and calls the necessary methods depending on user choice
+    int mainMenu() = returns the user choice from the main menu
+ */
 
 public class Main {
     static ArrayList<Book> bookList = new ArrayList<Book>();
     static Scanner inScanner = new Scanner(System.in);
     static ManageBook manageBooks;
     static loadBooks loadBooks;
-    private boolean isValid;
-    private int value;
+
+
+    /**
+     * void main(String[] args) = where library Management is run
+     * Initializes necessary components and starts the library management system.
+     */
 
     public static void main(String[] args) {
         manageBooks = new ManageBook(bookList);
@@ -18,6 +27,11 @@ public class Main {
         bookList = loadBooks.loadFromCSV();
         libraryManagement();
     }
+
+    /**
+     * void libraryManagement() = contain the abstract processes and calls the necessary methods depending on user choice
+     * Manages the library operations based on user input by invoking corresponding methods from ManageBook.
+     */
 
     static void libraryManagement() {
 
@@ -49,6 +63,12 @@ public class Main {
         }
 
     }
+
+    /**
+     * int mainMenu() = returns the user choice from the main menu
+     * Displays the main menu of the library management system and retrieves user input for menu selection.
+     * @return The user's menu choice as an integer.
+     */
 
     static int mainMenu() {
         int menuChoice = 0;

@@ -10,15 +10,64 @@ import java.util.stream.Collectors;
 
 import java.util.concurrent.*;
 
+/*
+    ADDBOOKS:
+    void addBook(ArrayList<Book> bookList) = accepts the booklist as a parameter and contains the main menu of what type of book the user wants to add
+    void addRegularBook() = presents options for adding a regular book with varying levels of detail (title, author, ISBN, genre, etc.)
+    void addHardBackBook() = presents options for adding a hardback book with varying levels of detail (title, author, ISBN, genre, cover type, etc.)
+    void addEBookBook() = presents options for adding an eBook with varying levels of detail (title, author, ISBN, genre, file format, file size, etc.)
+    void addAudioBook() = presents options for adding an audiobook with varying levels of detail (title, author, ISBN, genre, file format, audio format, bitrate, etc.)
+
+    (Remaining addbooks are for specific constructors, mentioned above are the main addbook methods)
+
+    FINDBOOK:
+    Optional<Book> findBook(ArrayList<Book> bookList, int id) = finds and returns a book from the list by ID if present
+
+    REMOVEBOOK:
+    void removeBookById(ArrayList<Book> bookList) = prompts user to enter book ID and removes corresponding book from list if found
+    void removeBook(int bookid) = removes a book from the list by its ID
+
+    SEARCHBOOK:
+    void searchBook(ArrayList<Book> bookList) = allows user to search for books by various criteria and displays matching results
+    boolean matchSearch(Book book, int searchType, String searchTerm) = helper method to match a book against a search term based on specified criteria
+
+    RETRIEVE AND DISPLAY BOOK INFORMATION:
+    static void retrieveBooks(ArrayList<Book> bookList) = displays a paginated catalog of books with details such as ID, type, title, author, and ISBN
+    static void viewBook(ArrayList<Book> bookList) = prompts user to enter a book ID and displays detailed information about the selected book
+
+    DATEPARSER:
+    LocalDate parsedate() = prompts user to enter a publication date in 'yyyy-MM-dd' format and parses it into a LocalDate object
+ */
+
+/**
+ * Manages a list of books and provides operations to manipulate them.
+ */
+
 public class ManageBook {
+    /**
+     * The list of books managed by this class.
+     */
     static ArrayList<Book> bookList = new ArrayList<Book>();
+    /**
+     * The input result object used for input validation.
+     */
     static InputResult inputcheck;
+    /**
+     * Constructs a ManageBook object with an initial list of books.
+     *
+     * @param bookList The initial list of books to manage.
+     */
     public ManageBook (ArrayList<Book> bookList) {
         this.bookList = bookList;
     }
 
     // ==========================================
     // add books
+    /**
+     * Allows the user to add different types of books to the book list.
+     *
+     * @param bookList The list of books to which the new book will be added.
+     */
     public void addBook (ArrayList<Book> bookList) {
         while (true) {
             System.out.println("""
@@ -61,6 +110,9 @@ public class ManageBook {
 
 
     }
+    /**
+     * Adds a regular book to the book list based on user input.
+     */
     public void addRegularBook() {
         String title, author, isbn, genre, publisher, synopsis, language;
         LocalDate publicationdate;
@@ -142,6 +194,9 @@ public class ManageBook {
             }
         }
     }
+    /**
+     * Adds a hardback book to the book list based on user input.
+     */
     public void addHardBackBook() {
         String title, author, isbn, genre, publisher, synopsis, language, covertype;
         LocalDate publicationdate;
@@ -334,6 +389,9 @@ public class ManageBook {
             }
         }
     }
+    /**
+     * Adds an eBook to the book list based on user input.
+     */
     public void addEBookBook() {
         String title, author, isbn, genre, publisher, synopsis, language, fileFormat;
         LocalDate publicationdate;
@@ -453,6 +511,9 @@ public class ManageBook {
             }
         }
     }
+    /**
+     * Adds an audiobook to the book list based on user input.
+     */
     public void addAudioBook() {
         String title, author, isbn, genre, publisher, synopsis, language, fileFormat, audioFormat, bitrate;
         LocalDate publicationDate;
@@ -579,19 +640,58 @@ public class ManageBook {
 
     }
     // add regular book variants
+    /**
+     * Adds a book with basic information (title, ISBN) to the book list.
+     *
+     * @param bookid   The unique identifier of the book.
+     * @param bookType The type of the book (e.g., Regular, HardBack, EBook, AudioBook).
+     * @param title    The title of the book.
+     * @param isbn     The ISBN (International Standard Book Number) of the book.
+     */
     public void addBook(int bookid, String bookType, String title, String isbn) {
         bookList.add(new Book(bookid, bookType, title, isbn));
     }
+    /**
+     * Adds a book with title, author, and ISBN to the book list.
+     *
+     * @param bookid   The unique identifier of the book.
+     * @param bookType The type of the book (e.g., Regular, HardBack, EBook, AudioBook).
+     * @param title    The title of the book.
+     * @param author   The author of the book.
+     * @param isbn     The ISBN (International Standard Book Number) of the book.
+     */
     public void addBook(int bookid, String bookType, String title, String author,
                         String isbn) {
         bookList.add(new Book(bookid, bookType, title, author, isbn));
     }
+    /**
+     * Adds a book with complete information to the book list.
+     *
+     * @param bookid          The unique identifier of the book.
+     * @param bookType        The type of the book (e.g., Regular, HardBack, EBook, AudioBook).
+     * @param title           The title of the book.
+     * @param author          The author of the book.
+     * @param isbn            The ISBN (International Standard Book Number) of the book.
+     * @param genre           The genre of the book.
+     * @param publisher       The publisher of the book.
+     * @param publicationDate The publication date of the book.
+     * @param synopsis        A brief synopsis or summary of the book.
+     * @param language        The language in which the book is written.
+     */
     public void addBook(int bookid, String bookType, String title,
                         String author, String isbn,String genre, String publisher,
                         LocalDate publicationDate, String synopsis, String language) {
         bookList.add(new Book(bookid, bookType, title, author, isbn, genre, publisher, publicationDate, synopsis, language));
     }
     // add hardbook variants
+    /**
+     * Adds a hardback book with basic information (title, ISBN, page count) to the book list.
+     *
+     * @param book     The book object containing basic information (title, ISBN).
+     * @param bookid   The unique identifier of the book.
+     * @param bookType The type of the book (e.g., Regular, HardBack, EBook, AudioBook).
+     * @param pagecount The number of pages in the hardback book.
+     */
     public void addHardBack(Book book,int bookid, String bookType,  int pagecount) {
         bookList.add(new Book.hardBack(
                 bookid,
@@ -601,6 +701,15 @@ public class ManageBook {
                 pagecount
         ));
     }
+    /**
+     * Adds a hardback book with information including page count and weight to the book list.
+     *
+     * @param book       The book object containing basic information (title, ISBN).
+     * @param bookid     The unique identifier of the book.
+     * @param bookType   The type of the book (e.g., Regular, HardBack, EBook, AudioBook).
+     * @param pagecount  The number of pages in the hardback book.
+     * @param weight     The weight of the hardback book in kilograms.
+     */
     public void addHardBack(Book book,int bookid, String bookType,  int pagecount,
                             double weight) {
         bookList.add(new Book.hardBack(
@@ -612,6 +721,16 @@ public class ManageBook {
                 weight
         ));
     }
+    /**
+     * Adds a hardback book with complete information to the book list.
+     *
+     * @param book        The book object containing complete information (title, author, ISBN, genre, etc.).
+     * @param bookid      The unique identifier of the book.
+     * @param bookType    The type of the book (e.g., Regular, HardBack, EBook, AudioBook).
+     * @param coverType   The type of cover (e.g., leather, cloth).
+     * @param pageCount   The number of pages in the hardback book.
+     * @param weightKG    The weight of the hardback book in kilograms.
+     */
     public void addHardBack(Book book, int bookid, String bookType, String coverType,
                             int pageCount, double weightKG) {
         bookList.add(new Book.hardBack(
@@ -631,6 +750,15 @@ public class ManageBook {
         ));
     }
     // add ebook variants
+    /**
+     * Adds an E-Book to the book list.
+     *
+     * @param book The book object to add.
+     * @param bookid The unique identifier of the book.
+     * @param bookType The type of the book (e.g., "EBook").
+     * @param fileFormat The format of the E-Book file.
+     * @param fileSize The size of the E-Book file in megabytes.
+     */
     public void addEBook(Book book, int bookid, String bookType, String fileFormat, double fileSize) {
         bookList.add(new Book.eBook(
                 bookid,
@@ -647,6 +775,14 @@ public class ManageBook {
                 fileSize
         ));
     }
+    /**
+     * Adds an E-Book to the book list with basic information.
+     *
+     * @param book The book object to add.
+     * @param bookid The unique identifier of the book.
+     * @param bookType The type of the book (e.g., "EBook").
+     * @param fileFormat The format of the E-Book file.
+     */
     public void addEBook( Book book, int bookid, String bookType, String fileFormat) {
         bookList.add(new Book.eBook(
                 bookid,
@@ -658,6 +794,17 @@ public class ManageBook {
     }
 
     // add audiobook variants
+    /**
+     * Adds an AudioBook to the book list with complete information.
+     *
+     * @param book The book object to add.
+     * @param bookid The unique identifier of the book.
+     * @param bookType The type of the book (e.g., "AudioBook").
+     * @param fileFormat The format of the audio book file.
+     * @param fileSize The size of the audio book file in megabytes.
+     * @param audioFormat The format of the audio in the book (e.g., MP3, AAC).
+     * @param bitrate The bitrate of the audio file.
+     */
     public void addAudioBook(Book book, int bookid, String bookType, String fileFormat,
                              double fileSize, String audioFormat, String bitrate) {
         bookList.add(new Book.audioBook(
@@ -677,6 +824,16 @@ public class ManageBook {
                 bitrate
         ));
     }
+    /**
+     * Adds an AudioBook to the book list with basic information and no file size specified.
+     *
+     * @param book The book object to add.
+     * @param bookid The unique identifier of the book.
+     * @param bookType The type of the book (e.g., "AudioBook").
+     * @param fileFormat The format of the audio book file.
+     * @param audioFormat The format of the audio in the book (e.g., MP3, AAC).
+     * @param bitrate The bitrate of the audio file.
+     */
     public void addAudioBook(Book book, int bookid, String bookType, String fileFormat,
                              String audioFormat, String bitrate) {
         bookList.add(new Book.audioBook(
@@ -689,6 +846,15 @@ public class ManageBook {
                 bitrate
         ));
     }
+    /**
+     * Adds an AudioBook to the book list with basic information and no bitrate specified.
+     *
+     * @param book The book object to add.
+     * @param bookid The unique identifier of the book.
+     * @param bookType The type of the book (e.g., "AudioBook").
+     * @param fileFormat The format of the audio book file.
+     * @param audioFormat The format of the audio in the book (e.g., MP3, AAC).
+     */
     static void addAudioBook(Book book, int bookid, String bookType, String fileFormat,
                              String audioFormat) {
         bookList.add(new Book.audioBook(
@@ -701,6 +867,12 @@ public class ManageBook {
         ));
     }
     // ==========================================
+     /** Finds a book in the provided list by its ID.
+            *
+            * @param bookList The list of books to search within.
+            * @param id The ID of the book to find.
+            * @return An Optional containing the found Book, or empty if no book with the specified ID is found.
+            */
     // find book by ID
     public Optional<Book> findBook (ArrayList<Book> bookList, int id) {
 
@@ -713,6 +885,11 @@ public class ManageBook {
 
     // ==========================================
     // Remove book by ID
+    /**
+     * Removes a book from the list by its ID after prompting the user to enter the ID.
+     *
+     * @param bookList The list of books from which the book will be removed.
+     */
     public void removeBookById(ArrayList<Book> bookList) {
 
         while(true) {
@@ -748,12 +925,23 @@ public class ManageBook {
             System.out.print("Book removal successful");
             retrieveBooks(bookList);
     }
+    /**
+     * Removes a book from the list by its ID.
+     *
+     * @param bookid The ID of the book to remove.
+     */
     static void removeBook(int bookid) {
         bookList.removeIf(book -> book.getBookid() == bookid);
     }
 
     // ==========================================
     // book search feature
+    /**
+     * Searches for books in the provided list based on user input criteria (Title, Author, ISBN, Genre, Publisher, Language).
+     * Prints the matching books or returns to the main menu based on user selection.
+     *
+     * @param bookList The list of books to search within.
+     */
     public void searchBook(ArrayList<Book> bookList) {
 
         int searchTypeChoice;
@@ -793,6 +981,15 @@ public class ManageBook {
             }
         }
     }
+    /**
+     * Checks if a given book matches the search criteria based on the search type and search term.
+     *
+     * @param book The book object to check against.
+     * @param searchType The type of search criteria (1 for Title, 2 for Author, etc.).
+     * @param searchTerm The term to search for within the specified criteria.
+     * @return true if the book matches the search criteria, false otherwise.
+     * @throws IllegalArgumentException If an invalid search type is provided.
+     */
     static boolean matchSearch(Book book, int searchType, String searchTerm) {
         switch (searchType){
             case 1:
@@ -814,6 +1011,11 @@ public class ManageBook {
 
     // ==========================================
     // retrieve and display books
+    /**
+     * Displays a paginated catalog of books from the provided list. Allows navigation through pages and returns to the main menu upon user input.
+     *
+     * @param bookList The list of books to display.
+     */
     public static void retrieveBooks(ArrayList<Book> bookList) {
         int pageSize = 5;
         int currentPage = 1;
@@ -911,6 +1113,11 @@ public class ManageBook {
 
     // ==========================================
     // Display Book Details
+    /**
+     * Displays detailed information about a specific book from the provided list based on user input.
+     *
+     * @param bookList The list of books to search for the specific book.
+     */
     public static void viewBook(ArrayList<Book> bookList) {
         LocalDate date;
         String dateStr = "", author = "", isbn = "", genre = "", publisher = "", synopsis = "", language = "";
@@ -965,6 +1172,11 @@ public class ManageBook {
 
     // ==========================================
     // date parser
+    /**
+     * Parses user input into a LocalDate object representing a publication date in the format 'yyyy-MM-dd'.
+     *
+     * @return The parsed LocalDate object.
+     */
     static LocalDate parsedate() {
         LocalDate result;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

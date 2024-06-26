@@ -5,22 +5,37 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Utility class to load book data from CSV files into an ArrayList of books using a specified management class.
+ */
+
 public class loadBooks {
     private ArrayList<Book> BookList;
     private ManageBook managebook;
+
+    /**
+     * Constructor for the loadBooks class.
+     *
+     * @param bookList     The ArrayList where books will be loaded.
+     * @param managebooks  The management class used to add books to the list.
+     */
 
     public loadBooks(ArrayList<Book> bookList, ManageBook managebooks) {
         this.BookList = bookList;
         this.managebook = managebooks;
     }
 
+    /**
+     * Loads book data from CSV files located in predefined directories into the BookList ArrayList.
+     *
+     * @return The ArrayList of books after loading from CSV files.
+     */
     public ArrayList<Book> loadFromCSV() {
         String initialDirectory = "src/main/java/com/jahnreil_stratpoint/dataCSV/";
         String[] filePaths = {
                 "regularBookdata/bookNoAuthor.csv",
                 "regularBookdata/bookRegular.csv",
                 "hardBackBookdata/hardBackNoAuthor.csv",
-                "hardBackBookdata/hardBackNoWeight.csv",
                 "eBookdata/eBook.csv",
                 "eBookdata/eBookNoAuthor.csv",
                 "audioBookdata/audioBook.csv",
@@ -34,7 +49,11 @@ public class loadBooks {
 
         return BookList;
     }
-
+    /**
+     * Parses a CSV file containing book data and adds them to the BookList ArrayList.
+     *
+     * @param filePath The path to the CSV file to parse.
+     */
     private void parseCSV(String filePath) {
         String line;
         String csvSplitBy = ",";
