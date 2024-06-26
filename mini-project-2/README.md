@@ -2,7 +2,7 @@
 
 This is a Java-based Library Management System that allows users to manage a catalog of books, including regular books, hardback books, e-books, and audiobooks.
 ## Java Documentation
-- [Link to Javadoc](.javadocs/index.html)
+- [Link to Javadoc]("https://docshoster.org/p/mafunamiii/ojt-training/latest/com/jahnreil_stratpoint/package-summary.html")
 ## Technical Details
 - Programming Language used: Java (JDK 17)
 - Build: Maven
