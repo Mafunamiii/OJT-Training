@@ -1,11 +1,11 @@
 bookType,title,author,isbn,fileformat
-eBook,1984,George Orwell,978-0451524935,PDF
-eBook,Pride and Prejudice,Jane Austen,978-1503290563,EPUB
-eBook,The Great Gatsby,F. Scott Fitzgerald,978-0743273565,MOBI
-eBook,Moby Dick,Herman Melville,978-1503280786,PDF
-eBook,War and Peace,Leo Tolstoy,978-1400079988,EPUB
-eBook,The Catcher in the Rye,J.D. Salinger,978-0316769488,PDF
-eBook,The Odyssey,Homer,978-0140268867,EPUB
-eBook,Brave New World,Aldous Huxley,978-0060850524,PDF
-eBook,The Lord of the Rings,J.R.R. Tolkien,978-0544003415,MOBI
-eBook,Harry Potter and the Sorcerer's Stone,J.K. Rowling,978-0590353427,EPUB
+eBook,1984,978-0451524935,PDF
+eBook,Pride and Prejudice,978-1503290563,EPUB
+eBook,The Great Gatsby,978-0743273565,MOBI
+eBook,Moby Dick,978-1503280786,PDF
+eBook,War and Peace,978-1400079988,EPUB
+eBook,The Catcher in the Rye,978-0316769488,PDF
+eBook,The Odyssey,978-0140268867,EPUB
+eBook,Brave New World,978-0060850524,PDF
+eBook,The Lord of the Rings,978-0544003415,MOBI
+eBook,Harry Potter and the Sorcerer's Stone,978-0590353427,EPUB
