@@ -910,6 +910,60 @@ public class ManageBook {
     }
 
     // ==========================================
+    // Display Book Details
+    public static void viewBook(ArrayList<Book> bookList) {
+        LocalDate date;
+        String dateStr = "", author = "", isbn = "", genre = "", publisher = "", synopsis = "", language = "";
+
+        while(true) {
+            System.out.print("\nEnter Book id: ");
+
+            String input = Main.inScanner.nextLine();
+            inputcheck = InputResult.inputCheck(input, bookList.size(), 1);
+
+            if (inputcheck.isValid) {
+                try {
+                    Book book = bookList.get(inputcheck.valueInt);
+
+                    author = (book.getAuthor() == null) ? "Not indicated" : book.getAuthor();
+                    genre = (book.getGenre() == null) ? "Not indicated" : book.getGenre();
+                    publisher = (book.getGenre() == null) ? "Not indicated" : book.getPublisher();
+                    synopsis = (book.getGenre() == null) ? "Not indicated" : book.getSynopsis();
+                    language = (book.getGenre() == null) ? "Not indicated" : book.getLanguage();
+
+
+                    if (bookList.get(inputcheck.valueInt).getPublicationDate() == null) {
+                        dateStr = "Not indicated";
+                    } else {
+                        date = bookList.get(inputcheck.valueInt).getPublicationDate();
+                        dateStr = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                    }
+
+
+                } catch (Exception e) {
+                    System.out.println("Invalid Date Entry");
+                }
+
+                System.out.println(
+                        "BOOK: " + bookList.get(inputcheck.valueInt).getTitle() + " (" +
+                                bookList.get(inputcheck.valueInt).getBookType() + ") " +
+                        "\n Author/s: " + author +
+                        "\n ISBN: " + bookList.get(inputcheck.valueInt).getISBN() +
+                        "\n Genre: " + genre +
+                        "\n Publiser: " + publisher +
+                        "\n Publication Date: " + dateStr +
+                        "\n Synopsis: " + synopsis +
+                        "\n Language: " + language
+                );
+                break;
+            }
+        }
+
+
+    }
+
+
+    // ==========================================
     // date parser
     static LocalDate parsedate() {
         LocalDate result;
@@ -932,5 +986,6 @@ public class ManageBook {
         }
         return result;
     }
+
 
 }
