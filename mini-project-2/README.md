@@ -7,6 +7,9 @@ This is a Java-based Library Management System that allows users to manage a cat
 - Programming Language used: Java (JDK 17)
 - Build: Maven
 
+## notes:
+- ISBN validator not implemented
+
 ## Features
 
 1. Browse Catalog: View all books in the library catalog.
