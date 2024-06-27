@@ -7,7 +7,7 @@ public enum Unit {
     /**
      * Kg unit.
      */
-    kg,
+    kG,
     /**
      * M l unit.
      */
