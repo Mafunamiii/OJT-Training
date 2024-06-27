@@ -27,6 +27,19 @@ public class Product {
     private int quantity;
     private Measurement measurement;
 
+    /**
+     * Instantiates a new Product.
+     *
+     * @param id           the id
+     * @param name         the name
+     * @param description  the description
+     * @param brand        the brand
+     * @param manufacturer the manufacturer
+     * @param price        the price
+     * @param discount     the discount
+     * @param quantity     the quantity
+     * @param measurement  the measurement
+     */
     @JsonCreator
     public Product(
             @JsonProperty("id") int id,
