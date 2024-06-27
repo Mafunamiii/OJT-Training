@@ -15,15 +15,15 @@ import java.util.concurrent.ExecutionException;
 @NoArgsConstructor
 public class ECommerceController {
     private static final Logger logger = LoggerFactory.getLogger(MainMenuController.class);
-
+    private static ArrayList<Product> products = new ArrayList<>();
     private static MainMenuController mainMenuController = new MainMenuController();
-    private static ProductShelfController productShelfController = new ProductShelfController();
+    private static ProductShelfController productShelfController = new ProductShelfController(products);
     LoadProductsData loadProductsData = new LoadProductsData();
     /**
      * Start e commerce controller.
      */
     public void startECommerceController()  {
-        ArrayList<Product> products = new ArrayList<>();
+
         products = loadProductsData.loadProductsFromJSON();
         while (true) {
             int mainMenuChoice = mainMenuController.menuChoice();
