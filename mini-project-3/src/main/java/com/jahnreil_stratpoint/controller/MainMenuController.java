@@ -42,8 +42,8 @@ public class MainMenuController {
             InputCheck inputCheck = InputCheck.inputCheckValues(input, 3, InputType.INT_WITH_MAX_CHOICE);
 
             if (inputCheck.isValid()) {
-                logger.info("menuChoice valid. Selected menu choice: {}", inputCheck.getValueInt());
-                menuChoiceResult = inputCheck.getValueInt();
+                logger.info("menuChoice valid. Selected menu choice: {}", inputCheck.getValue());
+                menuChoiceResult = (Integer) inputCheck.getValue();
                 break;
             } else {
                 logger.warn("Invalid menuChoice input: {}", input);
