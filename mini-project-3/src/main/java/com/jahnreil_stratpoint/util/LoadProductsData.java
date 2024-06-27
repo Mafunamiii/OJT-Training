@@ -10,10 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
 
+/**
+ * Utility class to load products data from a JSON file.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,7 +25,12 @@ public class LoadProductsData {
     private static final Logger logger = LoggerFactory.getLogger(LoadProductsData.class);
     private static final String PRODUCT_JSON_FILE = "src/main/java/com/jahnreil_stratpoint/productData/products.JSON";
 
-    public ArrayList<Product> loadProductsFromJSON () {
+    /**
+     * Loads products from a JSON file synchronously.
+     *
+     * @return List of products loaded from JSON
+     */
+    public ArrayList<Product> loadProductsFromJSON() {
         ArrayList<Product> products = new ArrayList<>();
         ObjectMapper mapper = new ObjectMapper();
 
@@ -34,4 +43,6 @@ public class LoadProductsData {
 
         return products;
     }
+
+
 }

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * The type E commerce controller.
@@ -21,7 +22,7 @@ public class ECommerceController {
     /**
      * Start e commerce controller.
      */
-    public void startECommerceController() {
+    public void startECommerceController()  {
         ArrayList<Product> products = new ArrayList<>();
         products = loadProductsData.loadProductsFromJSON();
         while (true) {

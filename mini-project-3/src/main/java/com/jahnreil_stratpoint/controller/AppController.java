@@ -21,8 +21,10 @@ public class AppController
         Runtime.getRuntime().addShutdownHook(new AppShutdownHook());
 
         logger.info("Started main");
+
         ECommerceController eCommerceController = new ECommerceController();
         logger.info("Created eCommerceController");
+
         eCommerceController.startECommerceController();
         logger.info("Started eCommerceController.startECommerceController()");
 
