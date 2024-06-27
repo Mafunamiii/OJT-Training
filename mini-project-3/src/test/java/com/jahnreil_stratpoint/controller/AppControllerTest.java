@@ -5,19 +5,17 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * Unit test for simple App.
+ * Unit test for AppController.
  */
-public class AppControllerTest
-    extends TestCase
-{
+public class AppControllerTest extends TestCase {
+
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public AppControllerTest(String testName )
-    {
-        super( testName );
+    public AppControllerTest(String testName) {
+        super(testName);
     }
 
     /**
@@ -25,16 +23,21 @@ public class AppControllerTest
      *
      * @return the suite of tests being tested
      */
-    public static Test suite()
-    {
-        return new TestSuite( AppControllerTest.class );
+    public static Test suite() {
+        return new TestSuite(AppControllerTest.class);
     }
 
     /**
-     * Rigourous Test :-)
+     * Test the main method of AppController.
      */
-    public void testApp()
-    {
-        assertTrue( true );
+    public void testAppControllerMain() {
+        String[] args = {}; // Empty arguments for simplicity
+
+        // Perform assertions to ensure no exceptions are thrown
+        try {
+            AppController.main(args);
+        } catch (Exception e) {
+            fail("Exception occurred: " + e.getMessage());
+        }
     }
 }
