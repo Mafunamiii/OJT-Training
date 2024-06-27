@@ -12,7 +12,7 @@ public class AppController
     private static final Logger logger = LoggerFactory.getLogger(AppController.class);
 
     /**
-     * The entry point of application.
+     * The entry point of application. runs and starts e-commerce controller
      *
      * @param args the input arguments
      */
