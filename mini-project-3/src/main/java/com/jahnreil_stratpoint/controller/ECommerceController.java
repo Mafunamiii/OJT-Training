@@ -1,8 +1,12 @@
 package com.jahnreil_stratpoint.controller;
 
+import com.jahnreil_stratpoint.model.Product;
+import com.jahnreil_stratpoint.util.LoadProductsData;
 import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
 
 /**
  * The type E commerce controller.
@@ -13,11 +17,13 @@ public class ECommerceController {
 
     private static MainMenuController mainMenuController = new MainMenuController();
     private static ProductShelfController productShelfController = new ProductShelfController();
-
+    LoadProductsData loadProductsData = new LoadProductsData();
     /**
      * Start e commerce controller.
      */
     public void startECommerceController() {
+        ArrayList<Product> products = new ArrayList<>();
+        products = loadProductsData.loadProductsFromJSON();
         while (true) {
             int mainMenuChoice = mainMenuController.menuChoice();
 
