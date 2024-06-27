@@ -72,3 +72,5 @@ mini-project-3-JavaDocumentation/Version 1/search.js
 mini-project-3-JavaDocumentation/Version 1/stylesheet.css
 mini-project-3-JavaDocumentation/Version 1/tag-search-index.js
 mini-project-3-JavaDocumentation/Version 1/type-search-index.js
+mini-project-3/logs/app.log
+mini-project-3/src/main/resources/logback.xml
