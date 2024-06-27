@@ -39,7 +39,7 @@ public class InputCheck<T> {
 
             switch (inputType) {
                 case INT_WITH_MAX_CHOICE:
-                    if (Integer.class.equals(inputValue.getClass())) {
+
                         logger.info("Converting InputStr to int and comparing to max choice");
                         inputValue = (T) Integer.valueOf(inputStr);
                         if ((Integer) inputValue < 0 || (Integer) inputValue > maxChoice) {
@@ -49,7 +49,7 @@ public class InputCheck<T> {
                             logger.info("InputStr to int convert successful");
                             inputIsValid = true;
                         }
-                    }
+
                     break;
                 case INT_ONLY:
                     if (Integer.class.equals(inputValue.getClass())) {
