@@ -12,9 +12,35 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.*;
 
+
+/**
+ * Utility class for loading product data from a JSON file.
+ *
+ * The JSON file should have the following structure:
+ *
+ * <pre>
+ * [
+ *     {
+ *         "id": 1,
+ *         "name": "Product Name",
+ *         "brand": "Brand Name",
+ *         "price": 99.99,
+ *         "category": "Category Name",
+ *         "description": "Product Description"
+ *     },
+ *     ...
+ * ]
+ * </pre>
+ *
+ * Fields:
+ * - `id`: (int) Unique identifier for the product.
+ * - `name`: (String) Name of the product.
+ * - `brand`: (String) Brand of the product.
+ * - `price`: (double) Price of the product.
+ * - `category`: (String) Category to which the product belongs.
+ * - `description`: (String) Description of the product.
+ */
 /**
  * Utility class to load products data from a JSON file.
  */
