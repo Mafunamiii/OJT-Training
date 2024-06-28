@@ -26,7 +26,7 @@ class MainTest {
         Main.main(new String[]{});
 
         // Asserting the output (replace with your actual expected output)
-        String expectedOutput = "Expected output"; // Update with your expected output
+        String expectedOutput = "Expected output";
         assertEquals(expectedOutput, outputStream.toString().trim());
     }
 
