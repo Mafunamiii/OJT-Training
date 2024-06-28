@@ -3,9 +3,7 @@ package com.jahnreil_stratpoint.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jahnreil_stratpoint.util.Measurement;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -22,6 +20,7 @@ public class Product {
     private String description;
     private String brand;
     private String manufacturer;
+    private String category;
     private BigDecimal price;
     private BigDecimal discount;
     private int quantity;
@@ -35,6 +34,7 @@ public class Product {
      * @param description  the description
      * @param brand        the brand
      * @param manufacturer the manufacturer
+     * @param category     the category
      * @param price        the price
      * @param discount     the discount
      * @param quantity     the quantity
@@ -47,6 +47,7 @@ public class Product {
             @JsonProperty("description") String description,
             @JsonProperty("brand") String brand,
             @JsonProperty("manufacturer") String manufacturer,
+            @JsonProperty("category") String category,
             @JsonProperty("price") BigDecimal price,
             @JsonProperty("discount") BigDecimal discount,
             @JsonProperty("quantity") int quantity,
@@ -56,6 +57,7 @@ public class Product {
         this.description = description;
         this.brand = brand;
         this.manufacturer = manufacturer;
+        this.category = category;
         this.price = price;
         this.discount = discount;
         this.quantity = quantity;
