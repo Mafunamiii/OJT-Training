@@ -40,7 +40,7 @@ public class InputCheck<T> {
             switch (inputType) {
                 case INT_WITH_MAX_CHOICE:
 
-                        logger.info("Converting InputStr to int and comparing to max choice");
+                        logger.info("Converting InputStr: {} to int and comparing to max choice {}", inputStr, maxChoice);
                         inputValue = (T) Integer.valueOf(inputStr);
                         if ((Integer) inputValue < 0 || (Integer) inputValue > maxChoice) {
                             logger.error("Input Value is higher than max choice indicated");
@@ -52,16 +52,14 @@ public class InputCheck<T> {
 
                     break;
                 case INT_ONLY:
-                    if (Integer.class.equals(inputValue.getClass())) {
-                        logger.info("Converting InputStr to int");
-                        inputValue = (T) Integer.valueOf(inputStr);
-                    }
+                    logger.info("Converting InputStr: {} to int", inputStr);
+                    inputValue = (T) Integer.valueOf(inputStr);
+                    inputIsValid = true;
                     break;
                 case TO_DOUBLE:
-                    if (Double.class.equals(inputValue.getClass())) {
-                        logger.info("Converting InputStr to double");
-                        inputValue = (T) Double.valueOf(inputStr);
-                    }
+                    logger.info("Converting InputStr: {} to double", inputStr);
+                    inputValue = (T) Double.valueOf(inputStr);
+                    inputIsValid = true;
                     break;
             }
 
